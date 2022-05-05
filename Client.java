@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Client 
 {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = "\u001B[34m";
     public static void main(String[] args)
     {
         final Socket clientSocket;
@@ -48,11 +50,11 @@ public class Client
 
                         while(msg != null)
                         {
-                            System.out.println("Server : " + msg);
+                            System.out.println(ANSI_BLUE + "Server : " + msg + ANSI_RESET);
                             msg = in.readLine();
                         }
 
-                        System.out.println("Server out of service");
+                        System.out.println(ANSI_BLUE + "Server out of service" + ANSI_RESET);
                         out.close();
                         clientSocket.close();
                     } 

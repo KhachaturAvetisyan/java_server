@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class Server 
 {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
     public static void main(String[] args)
     {
         final ServerSocket serverSocket ;
@@ -42,7 +44,7 @@ public class Server
             {
                 String msg ;
                 @Override
-                public void run()  // object to read data from user's keybord
+                public void run()
                 {
                     try 
                     {
@@ -50,11 +52,11 @@ public class Server
 
                         while(msg != null)
                         {                        
-                            System.out.println("Client: " + msg);
+                            System.out.println(ANSI_RED + "Client: " + msg + ANSI_RESET);
                             msg = in.readLine();
                         }
 
-                        System.out.println("Client deconect");
+                        System.out.println(ANSI_RED + "Client deconect" + ANSI_RESET);
 
                         out.close();
                         clientSocket.close();
@@ -68,11 +70,9 @@ public class Server
             });
             receive.start();
         } 
-            catch (IOException e) 
-            {
-                e.printStackTrace();
-            }
-
-
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
